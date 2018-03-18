@@ -34,6 +34,15 @@ class CryptoListWidget extends StatelessWidget {
     return new Scaffold(
       body: _buildBody(),
       backgroundColor: Colors.blue,
+      floatingActionButton: new Builder(
+          builder: (BuildContext context) {
+            return new FloatingActionButton(onPressed: () {
+              Scaffold.of(context).showSnackBar(new SnackBar(
+                  content: new Text("Sending message")));
+            },
+              child: new Icon(Icons.add_alert),);
+          }
+      ),
     );
   }
 

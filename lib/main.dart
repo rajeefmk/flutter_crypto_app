@@ -107,9 +107,38 @@ class CryptoListWidget extends StatelessWidget {
     );
   }
 
-  Text _getSubTitleWidget(String priceUsd, String percentChange1h) {
-    return new Text(
-        '\$$priceUsd\n1 hour: $percentChange1h%');
+  RichText _getSubTitleWidget(String priceUsd, String percentChange1h) {
+    TextSpan priceTextWidget = new TextSpan(
+        text: "\$$priceUsd\n",
+        style: new TextStyle(
+            color: Colors.black
+        )
+    );
+
+    String percentChangeText = "1 hour: $percentChange1h%";
+    TextSpan percentChangeTextWidget;
+
+    if (double.parse(percentChange1h) > 0) {
+      percentChangeTextWidget = new TextSpan(
+          text: percentChangeText,
+          style: new TextStyle(
+              color: Colors.green
+          )
+      );
+    } else {
+      percentChangeTextWidget = new TextSpan(
+          text: percentChangeText,
+          style: new TextStyle(
+              color: Colors.red
+          )
+      );
+    }
+
+    return new RichText(
+        text: new TextSpan(
+            children: [priceTextWidget, percentChangeTextWidget]
+        )
+    );
   }
 
 }
